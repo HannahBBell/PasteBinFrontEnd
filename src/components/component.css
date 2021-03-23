@@ -1,0 +1,13 @@
+.PostCard {
+    background-color: hotpink;
+    padding: 50px;
+    margin: 40px;
+}
+
+.PostCard h2 {
+    margin-top: 0;
+}
+.PostCard p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
