@@ -18,8 +18,6 @@ function App() {
   const [selectedPostCard, setSelectedPostCard] = useState<postTypes>()
   // console.log(contentInput)
 
-  const content = "Hello Matt I dislike you"
-  const title = "Saying hello to Matt"
 
   const areInputsFilled = () => titleInput!=="" && contentInput!=="" ? true : false
 

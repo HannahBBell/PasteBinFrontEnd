@@ -1,5 +1,5 @@
 import './component.css';
-import React, {useState} from "react";
+import React from "react";
 
 interface ImodalBox {
     title: string | undefined | null;
