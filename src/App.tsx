@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import PostCard from './components/PostCard';
+import MappedPostCard from './components/PostCard';
 
-interface postTypes {
+export interface postTypes {
   id: number,
   title: string | null,
   content: string
@@ -46,6 +46,7 @@ function App() {
   return (
     <div className="App">
       <h1>HMPasteBin</h1>
+      <p>Disclaimer: The website has been designed to look GROSS</p>
       <label className="label" htmlFor="title">Title</label>
       <input value={titleInput} id="title" type="text" placeholder="Enter post title..." onChange={event => setTitleInput(event.target.value)}></input>
       <br/>
@@ -58,7 +59,7 @@ function App() {
       <br/>
       <br/>
       <hr/>
-      <PostCard/>
+      <MappedPostCard allPosts={allPosts}/>
     </div>
   );
 }
