@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import MappedPostCard from './components/PostCard';
+import Modal from './components/modal';
 
 export interface postTypes {
-  id: number,
-  title: string | null,
-  content: string
+  id: number;
+  title: string | null;
+  content: string;
 };
 
 function App() {
@@ -13,26 +14,36 @@ function App() {
   const [titleInput, setTitleInput] = useState("");
   const [contentInput, setContentInput] = useState("");
   const [allPosts, setAllPosts] = useState<postTypes[]>([]);
-  // console.log(titleInput)
+  const [isModalShown, setIsModalShown] = useState(false)
+  const [selectedPostCard, setSelectedPostCard] = useState<postTypes>()
   // console.log(contentInput)
+
+  const content = "Hello Matt I dislike you"
+  const title = "Saying hello to Matt"
+
+  const areInputsFilled = () => titleInput!=="" && contentInput!=="" ? true : false
 
   //Inserts new post into db 
   const updatePost = async() => {
-    console.log("Update function called")
-    const dataToSend = {
-      title: titleInput,
-      content: contentInput
-    }
-    const response = await fetch("https://hmpastebin.herokuapp.com/posts", {
-      method: "POST",
-      body: JSON.stringify(dataToSend),
-      headers:{
-        'Content-Type': 'application/json'
+    if (areInputsFilled()) {
+      const dataToSend = {
+        title: titleInput,
+        content: contentInput
       }
-    });
-    setTitleInput("")
-    setContentInput("")
-  }
+      await fetch("https://hmpastebin.herokuapp.com/posts", {
+        method: "POST",
+        body: JSON.stringify(dataToSend),
+        headers:{
+          'Content-Type': 'application/json'
+        }
+      });
+      setTitleInput("")
+      setContentInput("")
+      getPosts()
+    }
+    else {
+      alert("You dumbass why is your post incomplete?!?")
+    }}
 
   //Gets all posts from DB 
   const getPosts = async() => {
@@ -59,7 +70,8 @@ function App() {
       <br/>
       <br/>
       <hr/>
-      <MappedPostCard allPosts={allPosts}/>
+      <MappedPostCard setIsModalShown={setIsModalShown} allPosts={allPosts} setSelectedPostCard={setSelectedPostCard}/>
+      <Modal content={selectedPostCard?.content} title={selectedPostCard?.title} isModalShown={isModalShown} setIsModalShown={setIsModalShown} />
     </div>
   );
 }

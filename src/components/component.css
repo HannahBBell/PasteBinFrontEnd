@@ -11,3 +11,35 @@
     margin-top: 0;
     margin-bottom: 0;
 }
+
+.PostCard h2:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.modal {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.hide {
+    display: none;
+}
+.modal-content {
+    background-color: #F4F4F4;
+    margin: 10% auto;
+    padding: 20px;
+    width: 70%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+}
+
+.modal-content button {
+    float: right;
+}
