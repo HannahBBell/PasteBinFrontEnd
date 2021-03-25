@@ -20,4 +20,5 @@ export default function ModalBox(props: ImodalBox) {
             </div>
         </div>
     )
-}
+};
+

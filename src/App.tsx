@@ -51,7 +51,12 @@ function App() {
   }
 
   useEffect(() => {getPosts()}, [])
-  console.log(allPosts)
+  
+  const deletePosts = async(id: number) => {
+    await fetch(`https://hmpastebin.herokuapp.com/posts/${id}`, {method: "DELETE"});
+    getPosts();
+  };
+
   return (
     <div className="App">
       <h1>HMPasteBin</h1>
@@ -68,7 +73,7 @@ function App() {
       <br/>
       <br/>
       <hr/>
-      <MappedPostCard setIsModalShown={setIsModalShown} allPosts={allPosts} setSelectedPostCard={setSelectedPostCard}/>
+      <MappedPostCard setIsModalShown={setIsModalShown} allPosts={allPosts} setSelectedPostCard={setSelectedPostCard} deletePosts={deletePosts}/>
       <Modal content={selectedPostCard?.content} title={selectedPostCard?.title} isModalShown={isModalShown} setIsModalShown={setIsModalShown} />
     </div>
   );
